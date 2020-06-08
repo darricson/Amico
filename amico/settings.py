@@ -25,12 +25,18 @@ SECRET_KEY = '8n3y)6#+nw_qv#k@wfn=)xmirz$ulh(%f(=kfez&eqlho0rzi('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'paciente',
+    'usuario',
+
+    'adminlte3',
+    'adminlte3_theme',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,8 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrap4',
-    'paciente',
-    'usuario',
+
 ]
 
 MIDDLEWARE = [
@@ -121,3 +126,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = 'medial/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfilies')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

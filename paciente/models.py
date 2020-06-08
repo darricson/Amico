@@ -1,19 +1,19 @@
 from django.db import models
+import datetime
 
-class Paciente(models.Model):
-    nome = models.CharField('Nome', max_length=100, blank=False)
-    funcao = models.CharField('Função', max_length=50)
-    data_nasc = models.DateField('Data nascimento')
-    rg = models.IntegerField('RG', max_length=15, blank=False)
-    orgao_exp = models.CharField('Orgão Expedidor', max_length=5, blank=False)
 
-    def__str__(self):
+class Empresa(models.Model):
+    nome = models.CharField(max_length=80, blank=False, verbose_name='Nome')
+    email = models.EmailField(max_length=100, verbose_name='E-mail')
+    cnpj = models.CharField(max_length=11, unique=True, verbose_name='CNPJ')
+
+    def __str__(self):
         return self.nome
 
 
-class Endereco(models.Model):
+class Paciente(models.Model):
+    estates = [
 
-    estados = [
         ('AC', 'Acre'),
         ('AL', 'Alagoas'),
         ('AP', 'Amapá'),
@@ -42,23 +42,43 @@ class Endereco(models.Model):
 
     ]
 
-    rua = models.CharField('Rua/Av./Logradouro', max_length=80)
-    numero = models.CharField('Numero/Bloco/Quadra', max_length=50)
-    bairro = models.CharField('Bairro', max_length=50)
-    cidade = models.CharField('Cidade', max_length=80)
-    estado = models.CharField('Estado', max_length=5, choices=estados)
+    sex = [
 
-    def__str__(self):
-        return self.bairro
+        ('m', 'masculino'),
+        ('f', 'feminino'),
+        ('o', 'outros'),
+    ]
 
-class Empresa(models.Model):
-    nome = models.CharField('Nome', max_length=80, blank=False)
-    email = models.EmailField('E-mail',max_length=100)
-    cnpj = models.CharField('CNPJ', max_length=11)
+    nome = models.CharField(max_length=100, blank=False, verbose_name='Nome')
+    empresa = models.ForeignKey(Empresa, on_delete=models.PROTECT, verbose_name='Epresa')
+    funcao = models.CharField(max_length=50, verbose_name='Função')
+    sexo = models.CharField(max_length=2, choices=sex, verbose_name='Sexo')
+    data_nasc = models.DateField(verbose_name='Data nascimento')
+    rg = models.IntegerField('RG', blank=False, unique=True)
+    orgao_exp = models.CharField(max_length=5, blank=False, verbose_name='Orgão Expedidor')
+    telefone = models.CharField(max_length=12, verbose_name='Telefone')
+    rua = models.CharField(max_length=80, verbose_name='Rua/Av./Logradouro')
+    numero = models.CharField(max_length=50, verbose_name='Numero/Bloco/Quadra')
+    bairro = models.CharField(max_length=50, verbose_name='Bairro')
+    cidade = models.CharField(max_length=80, verbose_name='Cidade')
+    estado = models.CharField(max_length=10, choices=estates, verbose_name='Estado')
 
-    def__str__(self):
+    def __str__(self):
         return self.nome
 
 
 class Exame(models.Model):
-    nome = models.CharField('Exame', max_length=50)
+    nome = models.CharField(max_length=50, verbose_name='Exame')
+    laboratorio = models.CharField(max_length=60, verbose_name='Laboratorio / Empresa')
+
+    def __str__(self):
+        return self.nome
+
+
+class Atendimento(models.Model):
+    paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE, verbose_name='Paciente')
+    exame = models.ManyToManyField(Exame, verbose_name='Exame')
+    observacao = models.TextField(max_length=500, blank=True, verbose_name='Observações')
+    dd_atendimento = models.DateTimeField(auto_now=True, verbose_name='Data de atendimento')
+
+
