@@ -27,7 +27,7 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(next_page=settings.LOGOUT_REDIRECT_URL), name='logout'),
 
     # path('', include('paciente.urls')),  # inclui a url da aplicação paciente
-] # + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  # importado do sttings, ira trazer os valores de midia
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  # importado do sttings, ira trazer os valores de midia
 
 
 admin.site.site_header = 'Amico'
