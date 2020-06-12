@@ -18,8 +18,18 @@ from django.urls import path, include
 
 from django.conf.urls.static import static
 from django.conf import settings  # permite buscar dados do settings
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
+    path('', admin.site.urls),
     path('admin/', admin.site.urls),
+    path('logout/', include('paciente.urls')),
+    path('logout/', auth_views.LogoutView.as_view(next_page=settings.LOGOUT_REDIRECT_URL), name='logout'),
+
     # path('', include('paciente.urls')),  # inclui a url da aplicação paciente
 ] # + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  # importado do sttings, ira trazer os valores de midia
+
+
+admin.site.site_header = 'Amico'
+admin.site.site_title = 'Gestão de Atendimentos'
+admin.site.index_title = 'Gestão de Atendimentos.'
