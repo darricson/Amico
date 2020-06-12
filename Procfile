@@ -1,0 +1,1 @@
+web: gunicorn amico.wsgi --log-file -
