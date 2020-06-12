@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '8n3y)6#+nw_qv#k@wfn=)xmirz$ulh(%f(=kfez&eqlho0rzi('
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -82,14 +82,16 @@ WSGI_APPLICATION = 'amico.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 """
+######## Banco de dados local Sqlite3
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-"""
 
+##### Banco de dados local Postgres  #########
 
 DATABASES = {
     'default': {
@@ -101,7 +103,11 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-
+"""
+#  configuração para o banco de dados no heroku
+DATABASES = {
+    'default': dj_database_url.config()
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
