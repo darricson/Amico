@@ -102,10 +102,21 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-"""
+
 #  configuração para o banco de dados no heroku
 DATABASES = {
     'default': dj_database_url.config()
+}
+"""
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'amico',
+        'USER': 'postgres',
+        'PASSWORD': 'django123',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
 }
 
 # Password validation
@@ -150,3 +161,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGOUT_REDIRECT_URL = 'index'
+
