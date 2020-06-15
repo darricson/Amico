@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '8n3y)6#+nw_qv#k@wfn=)xmirz$ulh(%f(=kfez&eqlho0rzi('
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -33,11 +33,10 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'paciente',
 
     'adminlte3',
     'adminlte3_theme',
-
+    'paciente',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
