@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '8n3y)6#+nw_qv#k@wfn=)xmirz$ulh(%f(=kfez&eqlho0rzi('
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -36,7 +36,6 @@ INSTALLED_APPS = [
 
     'adminlte3',
     'adminlte3_theme',
-    'paciente',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrap4',
+    'paciente',
 
 ]
 
@@ -104,19 +104,10 @@ DATABASES = {
 }
 
 #  configuração para o banco de dados no heroku
-DATABASES = {
-    'default': dj_database_url.config()
-}
+
 """
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'amico',
-        'USER': 'postgres',
-        'PASSWORD': 'django123',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+    'default': dj_database_url.config()
 }
 
 # Password validation
@@ -157,7 +148,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfile')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGOUT_REDIRECT_URL = 'index'
